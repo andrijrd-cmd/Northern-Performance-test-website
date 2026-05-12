@@ -1,0 +1,276 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Arial', sans-serif; }
+.section { margin-bottom: 2.5rem; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--color-text-tertiary); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.brand-title { font-family: 'Arial Black', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: 4px; color: var(--color-text-primary); margin-bottom: 4px; }
+.brand-sub { font-size: 12px; letter-spacing: 3px; color: var(--color-text-secondary); }
+
+/* Colour swatches */
+.swatch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.swatch { border-radius: 8px; overflow: hidden; flex: 1; min-width: 80px; }
+.swatch-block { height: 64px; }
+.swatch-info { padding: 8px; border: 0.5px solid var(--color-border-tertiary); border-top: none; border-radius: 0 0 8px 8px; }
+.swatch-name { font-size: 11px; font-weight: 700; color: var(--color-text-primary); }
+.swatch-hex { font-size: 10px; color: var(--color-text-secondary); font-family: monospace; }
+.swatch-role { font-size: 10px; color: var(--color-text-tertiary); margin-top: 2px; }
+
+/* Typography */
+.type-row { display: flex; flex-direction: column; gap: 16px; }
+.type-card { background: var(--color-background-secondary); border-radius: 8px; padding: 16px 20px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.type-specimen { color: var(--color-text-primary); }
+.type-meta { text-align: right; flex-shrink: 0; }
+.type-meta-name { font-size: 11px; font-weight: 700; color: var(--color-text-secondary); }
+.type-meta-detail { font-size: 10px; color: var(--color-text-tertiary); margin-top: 2px; }
+
+/* Icons */
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; }
+.icon-card { background: var(--color-background-secondary); border-radius: 8px; padding: 16px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; border: 0.5px solid var(--color-border-tertiary); }
+.icon-card svg { width: 32px; height: 32px; }
+.icon-label { font-size: 10px; color: var(--color-text-secondary); letter-spacing: 1px; text-align: center; text-transform: uppercase; }
+
+/* Spacing & usage */
+.usage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.usage-card { border-radius: 8px; padding: 14px 16px; border: 0.5px solid var(--color-border-tertiary); }
+.usage-card-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.usage-card ul { list-style: none; padding: 0; }
+.usage-card ul li { font-size: 12px; color: var(--color-text-secondary); padding: 3px 0; padding-left: 12px; position: relative; line-height: 1.5; }
+.usage-card ul li::before { content: '–'; position: absolute; left: 0; color: var(--color-text-tertiary); }
+
+/* Voice pills */
+.pill-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; }
+</style>
+
+<div style="padding: 2rem 1.5rem;">
+
+<div class="section">
+  <p class="brand-title">NORTHERN PERFORMANCE</p>
+  <p class="brand-sub">RMT · KINESIOLOGY · REHABILITATION</p>
+</div>
+
+<div class="section">
+  <p class="section-label">Colour palette</p>
+  <div class="swatch-row">
+    <div class="swatch">
+      <div class="swatch-block" style="background:#1E3A2F;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Boreal</p>
+        <p class="swatch-hex">#1E3A2F</p>
+        <p class="swatch-role">Primary brand</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#3B5438;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Spruce</p>
+        <p class="swatch-hex">#3B5438</p>
+        <p class="swatch-role">Secondary brand</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#C17A4A;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Ember</p>
+        <p class="swatch-hex">#C17A4A</p>
+        <p class="swatch-role">Accent / CTA</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#E8C49A;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Birch</p>
+        <p class="swatch-hex">#E8C49A</p>
+        <p class="swatch-role">Warm highlight</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#8FA882;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Sage</p>
+        <p class="swatch-hex">#8FA882</p>
+        <p class="swatch-role">Supporting tone</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#D6CFC4;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Granite</p>
+        <p class="swatch-hex">#D6CFC4</p>
+        <p class="swatch-role">Neutral / dividers</p>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-block" style="background:#F5F2EC;"></div>
+      <div class="swatch-info">
+        <p class="swatch-name">Snowfield</p>
+        <p class="swatch-hex">#F5F2EC</p>
+        <p class="swatch-role">Background / light</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-label">Typography</p>
+  <div class="type-row">
+    <div class="type-card">
+      <p class="type-specimen" style="font-family:'Arial Black',sans-serif; font-size:26px; font-weight:900; letter-spacing:3px;">NORTHERN</p>
+      <div class="type-meta">
+        <p class="type-meta-name">Display / Wordmark</p>
+        <p class="type-meta-detail">Arial Black · 900 · +3px tracking</p>
+      </div>
+    </div>
+    <div class="type-card">
+      <p class="type-specimen" style="font-family:'Georgia',serif; font-size:22px; font-weight:700; letter-spacing:0.5px;">Rehabilitative Wellness</p>
+      <div class="type-meta">
+        <p class="type-meta-name">H1 Heading</p>
+        <p class="type-meta-detail">Georgia Serif · 700 · 22px</p>
+      </div>
+    </div>
+    <div class="type-card">
+      <p class="type-specimen" style="font-family:'Arial',sans-serif; font-size:16px; font-weight:700; letter-spacing:1px;">Book your session today</p>
+      <div class="type-meta">
+        <p class="type-meta-name">H2 / Section</p>
+        <p class="type-meta-detail">Arial Sans · 700 · 16px · +1px tracking</p>
+      </div>
+    </div>
+    <div class="type-card">
+      <p class="type-specimen" style="font-family:'Arial',sans-serif; font-size:14px; font-weight:400; line-height:1.7; color:var(--color-text-secondary);">Our approach combines massage therapy, kinesiology, and evidence-based rehabilitation to restore and elevate your performance.</p>
+      <div class="type-meta">
+        <p class="type-meta-name">Body copy</p>
+        <p class="type-meta-detail">Arial · 400 · 14px · 1.7 leading</p>
+      </div>
+    </div>
+    <div class="type-card">
+      <p class="type-specimen" style="font-family:'Arial',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--color-text-tertiary);">RMT · Services · Book now</p>
+      <div class="type-meta">
+        <p class="type-meta-name">Label / Nav</p>
+        <p class="type-meta-detail">Arial · 700 · 10px · +3px · caps</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-label">Iconography</p>
+  <div class="icon-grid">
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="8" r="3" stroke="#C17A4A" stroke-width="1.5"/>
+        <path d="M10 20c0-4 2-7 6-7s6 3 6 7" stroke="#C17A4A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 20v5M20 20v5" stroke="#C17A4A" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M9 22h14" stroke="#C17A4A" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      <p class="icon-label">Athlete</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 24 L16 8 L24 24" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.5 19h11" stroke="#3B5438" stroke-width="1" stroke-linecap="round"/>
+        <path d="M16 8 L16 5" stroke="#3B5438" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="16" cy="4" r="1.2" fill="#3B5438"/>
+      </svg>
+      <p class="icon-label">North / Peak</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="16" r="9" stroke="#3B5438" stroke-width="1.5"/>
+        <line x1="16" y1="7" x2="16" y2="5" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="16" y1="27" x2="16" y2="25" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="25" y1="16" x2="27" y2="16" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="5" y1="16" x2="7" y2="16" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <polygon points="16,9 14.5,14 16,13 17.5,14" fill="#C17A4A"/>
+        <polygon points="16,23 14.5,18 16,19 17.5,18" fill="#3B5438" opacity="0.5"/>
+        <circle cx="16" cy="16" r="2" fill="#C17A4A"/>
+      </svg>
+      <p class="icon-label">Compass</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 16 Q10 10 13 16 Q16 22 19 14 Q22 8 25 12" stroke="#C17A4A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M7 22 h18" stroke="#3B5438" stroke-width="0.75" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      <p class="icon-label">Recovery</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="9" y="14" width="14" height="10" rx="2" stroke="#3B5438" stroke-width="1.5"/>
+        <path d="M13 14v-2a3 3 0 0 1 6 0v2" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="16" cy="19" r="1.5" fill="#C17A4A"/>
+      </svg>
+      <p class="icon-label">Trust / Secure</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 6 C10 6 6 10 6 14 C6 20 16 26 16 26 C16 26 26 20 26 14 C26 10 22 6 16 6Z" stroke="#C17A4A" stroke-width="1.5" fill="none"/>
+        <path d="M12 14 L15 17 L20 12" stroke="#C17A4A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="icon-label">Wellness</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 24 L12 18 L16 21 L20 13 L24 10" stroke="#3B5438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 10 h3 v3" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 26 h16" stroke="#3B5438" stroke-width="0.75" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+      <p class="icon-label">Performance</p>
+    </div>
+
+    <div class="icon-card">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 7 L16 25" stroke="#3B5438" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M10 13 C10 10 22 10 22 13 C22 16 10 16 10 19 C10 22 22 22 22 19" stroke="#C17A4A" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p class="icon-label">Pricing</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-label">Brand voice</p>
+  <div class="pill-row">
+    <span class="pill" style="background:#1E3A2F; color:#E8C49A;">Confident</span>
+    <span class="pill" style="background:#3B5438; color:#E8C49A;">Evidence-based</span>
+    <span class="pill" style="background:#C17A4A; color:#F5F2EC;">Energizing</span>
+    <span class="pill" style="background:#8FA882; color:#1E3A2F;">Grounded</span>
+    <span class="pill" style="background:#D6CFC4; color:#3B5438;">Approachable</span>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-label">Usage guidelines</p>
+  <div class="usage-grid">
+    <div class="usage-card" style="background:#1E3A2F; border-color:#3B5438;">
+      <p class="usage-card-label" style="color:#E8C49A;">Do</p>
+      <ul>
+        <li style="color:#D6CFC4;">Use Boreal + Snowfield for hero sections</li>
+        <li style="color:#D6CFC4;">Pair Ember for all primary CTAs</li>
+        <li style="color:#D6CFC4;">Use Sage for supporting UI elements</li>
+        <li style="color:#D6CFC4;">Maintain wide letter-spacing on headings</li>
+        <li style="color:#D6CFC4;">Lead with outcome-driven copy</li>
+      </ul>
+    </div>
+    <div class="usage-card" style="background:var(--color-background-secondary);">
+      <p class="usage-card-label" style="color:#A32D2D;">Don't</p>
+      <ul>
+        <li style="color:var(--color-text-secondary);">Mix more than 3 palette colours per section</li>
+        <li style="color:var(--color-text-secondary);">Use light type on Snowfield backgrounds</li>
+        <li style="color:var(--color-text-secondary);">Stretch or distort the wordmark</li>
+        <li style="color:var(--color-text-secondary);">Use clinical stock photography</li>
+        <li style="color:var(--color-text-secondary);">Use playful or rounded typefaces</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>

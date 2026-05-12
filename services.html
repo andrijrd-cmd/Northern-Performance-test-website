@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services – Northern Performance</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --boreal:    #1E3A2F;
+      --spruce:    #3B5438;
+      --ember:     #C17A4A;
+      --birch:     #E8C49A;
+      --sage:      #8FA882;
+      --granite:   #D6CFC4;
+      --snowfield: #F5F2EC;
+      --cream:     #F0E6D3;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--boreal);
+      background: var(--snowfield);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--boreal);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-emblem { width: 40px; height: 40px; flex-shrink: 0; }
+
+    .nav-wordmark { display: flex; flex-direction: column; }
+
+    .nav-wordmark-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .nav-wordmark-sub {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--granite);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links li a:hover { color: var(--birch); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background:
+        linear-gradient(160deg, rgba(30,58,47,0.88) 0%, rgba(59,84,56,0.70) 100%),
+        url('https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=1400&q=80')
+        center / cover no-repeat;
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .page-hero p {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--birch);
+      margin-top: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* ── SERVICES LIST ── */
+    .services-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--granite);
+    }
+
+    .service-row:first-child { border-top: 1px solid var(--granite); }
+
+    .service-label {
+      padding: 36px 24px 36px 0;
+      border-right: 2px solid var(--ember);
+    }
+
+    .service-label h2 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ember);
+      line-height: 1.5;
+    }
+
+    .service-label .service-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .service-body {
+      padding: 36px 0 36px 32px;
+    }
+
+    .service-body p {
+      font-size: 14px;
+      color: #3a4a42;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+
+    .service-body p:last-child { margin-bottom: 0; }
+
+    .service-body strong {
+      color: var(--boreal);
+      font-weight: 700;
+    }
+
+    /* ── BOOK CTA ── */
+    .book-cta {
+      background: var(--boreal);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .book-cta h2 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--birch);
+      margin-bottom: 12px;
+    }
+
+    .book-cta p {
+      font-family: Georgia, serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--granite);
+      margin-bottom: 28px;
+    }
+
+    .btn-ember {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--snowfield);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-ember:hover { background: #a8673d; }
+
+    .btn-ghost {
+      display: inline-block;
+      background: transparent;
+      color: var(--granite);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border: 1px solid var(--spruce);
+      margin-left: 12px;
+    }
+
+    .btn-ghost:hover { border-color: var(--granite); color: var(--cream); }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      background: var(--spruce);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-strip-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-strip-brand svg { width: 28px; height: 28px; }
+
+    .footer-strip-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .footer-strip-copy {
+      font-size: 11px;
+      color: var(--sage);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── HAMBURGER ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 1px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; flex-wrap: wrap; height: auto; }
+      .nav-brand { height: 64px; }
+      .nav-wordmark-sub { display: none; }
+      .nav-wordmark-name { font-size: 11px; letter-spacing: 2px; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 8px 0 16px;
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--spruce);
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .page-hero { padding: 48px 20px; }
+      .page-hero h1 { font-size: 28px; letter-spacing: 5px; }
+      .page-hero p { font-size: 13px; }
+
+      .services-wrapper { padding: 40px 20px 48px; }
+      .service-row {
+        grid-template-columns: 1fr;
+      }
+      .service-label {
+        padding: 24px 0 0 16px;
+        border-right: none;
+        border-left: 3px solid var(--ember);
+      }
+      .service-body { padding: 14px 0 28px 0; }
+
+      .book-cta { padding: 40px 20px; }
+      .btn-ember, .btn-ghost {
+        display: block;
+        margin: 0 auto 10px;
+        text-align: center;
+        max-width: 280px;
+      }
+
+      .footer-strip {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img class="nav-emblem" src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" />
+      <div class="nav-wordmark">
+        <span class="nav-wordmark-name">Northern Performance</span>
+        <span class="nav-wordmark-sub">RMT · Kinesiology · Rehabilitation</span>
+      </div>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#contact">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Services</h1>
+    <p>Evidence-based treatments designed to restore, recover, and elevate.</p>
+  </div>
+
+  <!-- SERVICES LIST -->
+  <div class="services-wrapper">
+
+    <div class="service-row">
+      <div class="service-label">
+        <h2>Condition-Based Acupuncture</h2>
+        <span class="service-tag">Therapeutic</span>
+      </div>
+      <div class="service-body">
+        <p>
+          <strong>What it is:</strong> Fine needles are inserted at precise anatomical points to stimulate
+          the nervous system, modulate pain signals, and promote the body's natural healing response.
+          Each session is built around your specific diagnosis — not a generic protocol.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> Condition-based acupuncture targets the root cause of
+          dysfunction rather than masking symptoms. It is particularly effective for chronic pain,
+          nerve-related conditions, headaches, and musculoskeletal injuries where conventional
+          approaches have plateaued.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-label">
+        <h2>Sports Massage</h2>
+        <span class="service-tag">Pre / Post Sport Recovery</span>
+      </div>
+      <div class="service-body">
+        <p>
+          <strong>What it is:</strong> A targeted soft-tissue treatment adapted to the demands of
+          athletic activity. Pre-sport sessions focus on activation, circulation, and readiness;
+          post-sport sessions prioritise flushing metabolic waste, reducing soreness, and
+          accelerating tissue repair.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> Consistent sports massage reduces injury risk, shortens
+          recovery windows, and keeps you training at full capacity. Whether you're preparing for
+          competition or coming off a hard training block, timing and technique make the difference.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-label">
+        <h2>Muscle Scraping &amp; Cupping</h2>
+        <span class="service-tag">Instrument-Assisted</span>
+      </div>
+      <div class="service-body">
+        <p>
+          <strong>What it is:</strong> Muscle scraping (IASTM) uses a firm-edged tool to break
+          down fascial restrictions and scar tissue along the muscle and tendon. Cupping applies
+          negative pressure to lift tissue, decompress underlying structures, and increase local
+          blood flow.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> Both techniques reach layers of tissue that hands alone
+          cannot effectively address. They are highly effective for stubborn soft-tissue restrictions,
+          overuse injuries, and areas of chronic tension that haven't responded to standard massage.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-label">
+        <h2>Deep Tissue Massage</h2>
+        <span class="service-tag">Rehabilitative</span>
+      </div>
+      <div class="service-body">
+        <p>
+          <strong>What it is:</strong> Sustained, slow pressure applied to the deeper layers of
+          muscle and connective tissue. Techniques include cross-fibre friction, myofascial release,
+          and trigger point therapy to address structural dysfunction and restricted range of motion.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> Surface-level tension is often a symptom of deeper
+          structural holding patterns. Deep tissue work resets these patterns, restores normal
+          movement mechanics, and directly addresses the source of recurring pain and stiffness —
+          making it essential for anyone dealing with postural strain or repetitive-load injuries.
+        </p>
+      </div>
+    </div>
+
+    <div class="service-row">
+      <div class="service-label">
+        <h2>Relaxation Massage</h2>
+        <span class="service-tag">Restorative</span>
+      </div>
+      <div class="service-body">
+        <p>
+          <strong>What it is:</strong> Long, flowing strokes applied at a steady, calming rhythm
+          to engage the parasympathetic nervous system, lower cortisol, and bring the body into
+          a state of genuine rest. Pressure is moderate and consistent throughout.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> Recovery is not only physical. Chronic stress and
+          nervous system dysregulation impair sleep, delay healing, and compound injury risk.
+          Relaxation massage is a legitimate therapeutic tool — not a luxury — for anyone whose
+          system is running too hot to recover effectively.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOOK CTA -->
+  <div class="book-cta">
+    <h2>Ready to Book?</h2>
+    <p>Choose the session that's right for you and get started.</p>
+    <a href="index.html#contact" class="btn-ember">Book a Session</a>
+    <a href="index.html#pricing" class="btn-ghost">View Pricing</a>
+  </div>
+
+  <!-- FOOTER STRIP -->
+  <div class="footer-strip">
+    <a href="index.html" class="footer-strip-brand">
+      <img src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" style="width:28px;height:28px;object-fit:contain;" />
+      <span class="footer-strip-name">Northern Performance</span>
+    </a>
+    <p class="footer-strip-copy">&copy; 2024 Northern Performance. All rights reserved.</p>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('open'))
+    );
+  </script>
+</body>
+</html>

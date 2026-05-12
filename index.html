@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northern Performance – RMT · Kinesiology · Rehabilitation</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --boreal:    #1E3A2F;
+      --spruce:    #3B5438;
+      --ember:     #C17A4A;
+      --birch:     #E8C49A;
+      --sage:      #8FA882;
+      --granite:   #D6CFC4;
+      --snowfield: #F5F2EC;
+      --cream:     #F0E6D3;
+      --white:     #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar { display: none; }
+
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--boreal);
+      background: var(--snowfield);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--boreal);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-emblem {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-wordmark-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .nav-wordmark-sub {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--granite);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links li a:hover { color: var(--birch); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 500px;
+      background:
+        linear-gradient(160deg, rgba(30,58,47,0.78) 0%, rgba(59,84,56,0.55) 100%),
+        url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1400&q=80')
+        center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content { color: var(--cream); }
+
+    .hero-content h1 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      color: var(--cream);
+    }
+
+    .hero-content .subtitle {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 17px;
+      font-style: italic;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      color: var(--birch);
+    }
+
+    .btn-ember {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--snowfield);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 13px 30px;
+      margin-top: 24px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-ember:hover { background: #a8673d; }
+
+    /* ── ABOUT ── */
+    .about-section {
+      display: flex;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .about-photo {
+      width: 230px;
+      height: 290px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .about-text h2 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ember);
+      display: inline-block;
+    }
+
+    .about-text p {
+      font-size: 14px;
+      color: #3a4a42;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .about-text a {
+      color: var(--ember);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SERVICES ── */
+    .services-section {
+      background: var(--granite);
+      padding: 64px 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      margin-bottom: 32px;
+    }
+
+    .services-card {
+      background: var(--white);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      padding: 32px 52px;
+      text-align: center;
+      border-bottom: 1px solid var(--granite);
+    }
+
+    .service-item:last-child { border-bottom: none; }
+
+    .service-item h3 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 10px;
+    }
+
+    .service-item p {
+      font-size: 13px;
+      color: #5a6a60;
+      margin-bottom: 14px;
+    }
+
+    .service-divider {
+      border: none;
+      border-top: 1px solid var(--granite);
+      margin: 14px auto;
+      width: 60%;
+    }
+
+    .service-meta {
+      font-size: 12px;
+      color: #7a8a80;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .btn-book {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--snowfield);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-book:hover { background: #a8673d; }
+
+    /* ── GALLERY ── */
+    .gallery-strip {
+      display: flex;
+      max-width: 560px;
+      margin: 20px auto 0;
+    }
+
+    .gallery-strip img {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 160px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .see-all-btn {
+      background: var(--boreal);
+      color: var(--cream);
+      width: 160px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px;
+      line-height: 1.4;
+    }
+
+    .see-all-btn:hover { background: var(--spruce); }
+
+    /* ── PRICING ── */
+    .pricing-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .pricing-title {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      text-align: center;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ember);
+    }
+
+    .pricing-intro {
+      text-align: center;
+      font-size: 13px;
+      color: #5a6a60;
+      margin-top: 16px;
+      margin-bottom: 36px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--granite);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .pricing-card--featured {
+      border-color: var(--ember);
+      padding-top: 44px;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ember);
+      color: var(--snowfield);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+    }
+
+    .pricing-duration {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--boreal);
+      line-height: 1;
+    }
+
+    .pricing-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 4px;
+      margin-bottom: 16px;
+    }
+
+    .pricing-divider {
+      border: none;
+      border-top: 1px solid var(--granite);
+      margin: 0 auto 20px;
+    }
+
+    .pricing-includes {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .pricing-includes li {
+      font-size: 12px;
+      color: #5a6a60;
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .pricing-includes li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--ember);
+    }
+
+    .pricing-price {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--boreal);
+      margin-bottom: 20px;
+    }
+
+    /* ── INSURANCE ── */
+    .insurance-section {
+      padding: 64px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .insurance-section h2 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--ember);
+    }
+
+    .insurance-body {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 32px;
+      align-items: flex-start;
+    }
+
+    .insurance-box {
+      background: var(--boreal);
+      color: var(--birch);
+      padding: 24px 20px;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.5;
+      width: 180px;
+      flex-shrink: 0;
+    }
+
+    .insurance-copy {
+      font-size: 14px;
+      color: #3a4a42;
+      line-height: 1.75;
+    }
+
+    .insurance-logos {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid var(--granite);
+    }
+
+    .ins-logo {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--spruce);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--boreal);
+      color: var(--cream);
+      padding: 64px 24px 44px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .footer-col h3 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--birch);
+      margin-bottom: 20px;
+    }
+
+    .footer-map {
+      width: 100%;
+      height: 110px;
+      margin-bottom: 16px;
+      border: 0;
+      opacity: 0.9;
+    }
+
+    .footer-address {
+      font-size: 12px;
+      color: var(--granite);
+      line-height: 2;
+    }
+
+    .footer-address a {
+      color: var(--sage);
+      text-decoration: none;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 9px;
+      border: 1px solid var(--spruce);
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--sage);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .contact-form textarea {
+      height: 72px;
+      resize: none;
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      background: var(--ember);
+      color: var(--snowfield);
+      border: none;
+      padding: 11px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-submit:hover { background: #a8673d; }
+
+    .footer-bottom {
+      max-width: 720px;
+      margin: 40px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--spruce);
+    }
+
+    .footer-bottom-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-bottom-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--sage);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── HAMBURGER ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 1px;
+      transition: none;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+        flex-wrap: wrap;
+        height: auto;
+      }
+      .nav-brand { height: 64px; }
+      .nav-wordmark-sub { display: none; }
+      .nav-wordmark-name { font-size: 11px; letter-spacing: 2px; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 8px 0 16px;
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--spruce);
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .hero { height: 380px; padding: 0 20px; }
+      .hero-content h1 { font-size: 34px; letter-spacing: 5px; }
+      .hero-content .subtitle { font-size: 13px; letter-spacing: 1.5px; }
+
+      .about-section {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 28px;
+      }
+      .about-photo { width: 100%; height: 260px; }
+
+      .services-section { padding: 40px 20px; }
+      .gallery-strip { max-width: 100%; }
+      .gallery-strip img { height: 120px; }
+      .see-all-btn { width: 110px; font-size: 9px; padding: 12px 8px; }
+
+      .pricing-section { padding: 40px 20px; }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 260px;
+        margin: 0 auto;
+      }
+      .pricing-card {
+        padding: 28px 20px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .pricing-card--featured { padding-top: 40px; }
+      .pricing-duration { font-size: 26px; }
+      .pricing-divider { width: 40%; }
+      .pricing-includes {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .pricing-includes li {
+        padding-left: 0;
+        font-size: 12px;
+      }
+      .pricing-includes li::before { display: none; }
+      .pricing-price { font-size: 22px; margin-bottom: 16px; }
+
+      .insurance-section { padding: 40px 20px; }
+      .insurance-body { flex-direction: column; }
+      .insurance-box { width: 100%; }
+
+      footer { padding: 40px 20px 32px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-brand">
+      <img class="nav-emblem" src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" />
+
+      <div class="nav-wordmark">
+        <span class="nav-wordmark-name">Northern Performance</span>
+        <span class="nav-wordmark-sub">RMT · Kinesiology · Rehabilitation</span>
+      </div>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pricing">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Northern<br>Performance</h1>
+      <p class="subtitle">RMT · Kinesiology · Rehabilitation</p>
+      <a href="#contact" class="btn-ember">Book a Session</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-section">
+      <img
+        class="about-photo"
+        src="brand_assets/IMG_4376.jpg"
+        alt="Northern Performance"
+      />
+      <div class="about-text">
+        <h2>About</h2>
+        <p>
+          Northern Performance is a results-driven rehab and wellness practice built
+          for athletes, active individuals, and anyone ready to reclaim their body's
+          potential. My evidence-based approach combines registered massage therapy,
+          kinesiology, and rehabilitation science to restore function and elevate performance.
+        </p>
+        <p>
+          I believe recovery and peak performance are not separate goals — they are the
+          same journey. I work with you to build a plan grounded in your body, your goals,
+          and the terrain you're navigating. No guesswork, no filler —
+          just purposeful, effective care that moves you forward.
+        </p>
+        <a href="about.html">Read more &rsaquo;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services-section">
+    <h2 class="section-title">Our Services</h2>
+
+    <!-- Gallery strip -->
+    <div class="gallery-strip">
+      <img
+        src="brand_assets/spinal-manipulation-big.jpg"
+        alt="Spinal manipulation treatment"
+      />
+      <img
+        src="brand_assets/assessment photo.jpg"
+        alt="Assessment session"
+      />
+      <a href="services.html" class="see-all-btn">View All Services</a>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="pricing-section">
+      <h2 class="pricing-title">Services &amp; Pricing</h2>
+      <p class="pricing-intro">All treatments are tailored to your needs. Choose the duration that works best for your session.</p>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="pricing-duration">45 min</div>
+          <div class="pricing-type">Treatment</div>
+          <hr class="pricing-divider" />
+          <ul class="pricing-includes">
+            <li>Targeted soft tissue work</li>
+            <li>Focus area assessment</li>
+            <li>Post-treatment guidance</li>
+          </ul>
+          <div class="pricing-price">$105.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
+          <a href="#contact" class="btn-ember">Book Now</a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-duration">60 min</div>
+          <div class="pricing-type">Treatment</div>
+          <hr class="pricing-divider" />
+          <ul class="pricing-includes">
+            <li>Full-body assessment</li>
+            <li>Targeted soft tissue work</li>
+            <li>Movement & rehab exercises</li>
+            <li>Post-treatment guidance</li>
+          </ul>
+          <div class="pricing-price">$126.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
+          <a href="#contact" class="btn-ember">Book Now</a>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-duration">90 min</div>
+          <div class="pricing-type">Treatment</div>
+          <hr class="pricing-divider" />
+          <ul class="pricing-includes">
+            <li>Comprehensive assessment</li>
+            <li>Extended soft tissue work</li>
+            <li>Movement & rehab exercises</li>
+            <li>Recovery programming</li>
+            <li>Post-treatment guidance</li>
+          </ul>
+          <div class="pricing-price">$178.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
+          <a href="#contact" class="btn-ember">Book Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section id="insurance">
+    <div class="insurance-section">
+      <h2>Insurance</h2>
+      <div class="insurance-body">
+        <div class="insurance-box">
+          I accept nearly all major insurance plans.
+        </div>
+        <p class="insurance-copy">
+          I believe financial barriers should never stand between you and recovery.
+          Northern Performance is a registered provider accepted by most extended health
+          benefit plans. Submit directly through your provider or I can assist with
+          superbill documentation. Contact me before your first session if you have
+          questions about your specific coverage.
+        </p>
+      </div>
+      <div class="insurance-logos">
+        <span class="ins-logo">Sun Life</span>
+        <span class="ins-logo">BlueCross</span>
+        <span class="ins-logo">Manulife</span>
+        <span class="ins-logo">Great-West</span>
+        <span class="ins-logo">Desjardins</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-grid">
+
+      <!-- The Clinic -->
+      <div class="footer-col">
+        <h3>The Clinic</h3>
+        <iframe
+          class="footer-map"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-79.640%2C44.995%2C-79.590%2C45.025&amp;layer=mapnik&amp;marker=45.010%2C-79.615"
+          loading="lazy"
+          title="Clinic location map"
+        ></iframe>
+        <div class="footer-address">
+          <p>3234 Muskoka District Road 169<br>Bala, ON P0C 1A0</p>
+          <p>Email: <a href="mailto:hello@northernperformance.ca">hello@northernperformance.ca</a><br>Tel: (416) 522-4666</p>
+          <p style="margin-top:10px;">
+            Mon – Fri: 7am – 8pm<br>
+            Saturday: 8am – 5pm<br>
+            Sunday: Closed
+          </p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-row">
+            <input type="text" placeholder="First Name*" required />
+            <input type="text" placeholder="Last Name" />
+          </div>
+          <input type="email" placeholder="Email*" required />
+          <input type="text" placeholder="Subject" />
+          <textarea placeholder="Your message here..."></textarea>
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom-logo">
+        <img src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" style="width:32px;height:32px;object-fit:contain;" />
+        <span style="font-family:'Arial Black',sans-serif; font-size:11px; font-weight:900; letter-spacing:2.5px; color:var(--cream); text-transform:uppercase;">Northern Performance</span>
+      </div>
+      <p class="footer-copy">&copy; 2024 Northern Performance. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('open'))
+    );
+  </script>
+</body>
+</html>

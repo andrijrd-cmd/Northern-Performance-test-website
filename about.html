@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Jude – Northern Performance</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --boreal:    #1E3A2F;
+      --spruce:    #3B5438;
+      --ember:     #C17A4A;
+      --birch:     #E8C49A;
+      --sage:      #8FA882;
+      --granite:   #D6CFC4;
+      --snowfield: #F5F2EC;
+      --cream:     #F0E6D3;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--boreal);
+      background: var(--snowfield);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--boreal);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-emblem { width: 40px; height: 40px; flex-shrink: 0; }
+
+    .nav-wordmark { display: flex; flex-direction: column; }
+
+    .nav-wordmark-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .nav-wordmark-sub {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--granite);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .nav-links li a:hover { color: var(--birch); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background:
+        linear-gradient(160deg, rgba(30,58,47,0.88) 0%, rgba(59,84,56,0.65) 100%),
+        url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1400&q=80')
+        center / cover no-repeat;
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+
+    .page-hero p {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--birch);
+      margin-top: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .about-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 72px 24px 80px;
+    }
+
+    /* ── BIO BLOCK ── */
+    .bio-block {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 52px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .bio-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bio-eyebrow {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ember);
+      margin-bottom: 6px;
+    }
+
+    .bio-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .bio-title {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--sage);
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--granite);
+    }
+
+    .bio-text p {
+      font-size: 14px;
+      color: #3a4a42;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .bio-text p:last-child { margin-bottom: 0; }
+
+    /* ── CREDENTIALS ── */
+    .credentials-block {
+      background: var(--boreal);
+      padding: 48px 44px;
+    }
+
+    .credentials-label {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--birch);
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--spruce);
+    }
+
+    .credential-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--spruce);
+    }
+
+    .credential-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .credential-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .credential-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .credential-degree {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .credential-institution {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ember);
+    }
+
+    /* ── BOOK CTA ── */
+    .book-cta {
+      background: var(--granite);
+      padding: 52px 24px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .book-cta h2 {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--boreal);
+      margin-bottom: 10px;
+    }
+
+    .book-cta p {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--spruce);
+      margin-bottom: 26px;
+    }
+
+    .btn-ember {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--snowfield);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      cursor: pointer;
+      border: none;
+      margin: 0 6px;
+    }
+
+    .btn-ember:hover { background: #a8673d; }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--boreal);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 13px 36px;
+      border: 1px solid var(--boreal);
+      margin: 0 6px;
+    }
+
+    .btn-outline:hover { background: var(--boreal); color: var(--cream); }
+
+    /* ── FOOTER STRIP ── */
+    .footer-strip {
+      background: var(--boreal);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-strip-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-strip-brand svg { width: 28px; height: 28px; }
+
+    .footer-strip-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .footer-strip-copy {
+      font-size: 11px;
+      color: var(--sage);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── HAMBURGER ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 1px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; flex-wrap: wrap; height: auto; }
+      .nav-brand { height: 64px; }
+      .nav-wordmark-sub { display: none; }
+      .nav-wordmark-name { font-size: 11px; letter-spacing: 2px; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 8px 0 16px;
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--spruce);
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
+      .page-hero { padding: 48px 20px; }
+      .page-hero h1 { font-size: 28px; letter-spacing: 5px; }
+      .page-hero p { font-size: 13px; }
+
+      .about-wrapper { padding: 40px 20px 48px; }
+      .bio-block {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 40px;
+      }
+      .bio-photo { width: 100%; aspect-ratio: 4 / 3; }
+      .bio-name { font-size: 20px; }
+
+      .credentials-block { padding: 32px 24px; }
+      .credential-item { gap: 14px; }
+
+      .book-cta { padding: 40px 20px; }
+      .btn-ember, .btn-outline {
+        display: block;
+        margin: 0 auto 10px;
+        text-align: center;
+        max-width: 280px;
+      }
+
+      .footer-strip {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-brand">
+      <img class="nav-emblem" src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" />
+      <div class="nav-wordmark">
+        <span class="nav-wordmark-name">Northern Performance</span>
+        <span class="nav-wordmark-sub">RMT · Kinesiology · Rehabilitation</span>
+      </div>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#contact">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <h1>Meet Jude</h1>
+    <p>Registered Massage Therapist · Northern Performance</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="about-wrapper">
+
+    <!-- BIO -->
+    <div class="bio-block">
+      <img
+        class="bio-photo"
+        src="brand_assets/IMG_4376.jpg"
+        alt="Jude – Registered Massage Therapist"
+      />
+      <div class="bio-text-col">
+        <p class="bio-eyebrow">Your Therapist</p>
+        <p class="bio-name">Jude</p>
+        <p class="bio-title">Registered Massage Therapist &amp; Kinesiologist</p>
+        <div class="bio-text">
+          <p>
+            Hi there! I'm Jude, a Registered Massage Therapist with a passion for holistic
+            healing and helping people feel their best. My journey into massage therapy began
+            with a deep curiosity about the human body and its incredible potential for recovery
+            and resilience. This led me to earn an Honours Bachelor of Science in Kinesiology
+            from the University of Waterloo and a Diploma of Massage Therapy from the
+            Sutherland-Chan School in Toronto — two experiences that shaped my approach to care
+            and deepened my commitment to wellness.
+          </p>
+          <p>
+            In my practice, I bring a diverse skill set that includes deep tissue massage,
+            condition-based acupuncture, myofascial cupping/scraping, and Swedish massage. Whether you're recovering
+            from surgery, navigating prenatal or postpartum changes, managing a neuromuscular
+            condition, or simply seeking relief from everyday tension, I'm here to provide a
+            tailored treatment plan that meets your unique needs.
+          </p>
+          <p>
+            I also specialize in scar work and sports recovery, drawing from my own active
+            lifestyle as a powerlifter, hockey player, and golfer. These pursuits have given me
+            firsthand insights into the physical demands of sports and the importance of proper
+            recovery — something I love incorporating into my work with clients.
+          </p>
+          <p>
+            My goal is to empower you to move better, feel better, and live better. I believe
+            in addressing the root causes of discomfort, not just the symptoms, to help you
+            regain mobility, reduce pain, and improve your overall quality of life. Every
+            treatment is designed with you in mind, because I know that no two bodies — or
+            journeys — are the same.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CREDENTIALS -->
+    <div class="credentials-block">
+      <p class="credentials-label">Education &amp; Credentials</p>
+
+      <div class="credential-item">
+        <div class="credential-icon">
+          <!-- Diploma / scroll icon -->
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="6" width="20" height="14" rx="1.5" stroke="#C17A4A" stroke-width="1.5"/>
+            <path d="M8 11h12M8 14h8" stroke="#C17A4A" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M14 20v4M11 24h6" stroke="#E8C49A" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="credential-body">
+          <p class="credential-degree">Bachelor of Science Honours — Kinesiology</p>
+          <p class="credential-institution">University of Waterloo</p>
+        </div>
+      </div>
+
+      <div class="credential-item">
+        <div class="credential-icon">
+          <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="6" width="20" height="14" rx="1.5" stroke="#C17A4A" stroke-width="1.5"/>
+            <path d="M8 11h12M8 14h8" stroke="#C17A4A" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M14 20v4M11 24h6" stroke="#E8C49A" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="credential-body">
+          <p class="credential-degree">Diploma of Massage Therapy</p>
+          <p class="credential-institution">Sutherland-Chan School, Toronto</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOOK CTA -->
+  <div class="book-cta">
+    <h2>Ready to Get Started?</h2>
+    <p>Book a session or explore the full list of treatments.</p>
+    <a href="index.html#contact" class="btn-ember">Book a Session</a>
+    <a href="services.html" class="btn-outline">View Services</a>
+  </div>
+
+  <!-- FOOTER STRIP -->
+  <div class="footer-strip">
+    <a href="index.html" class="footer-strip-brand">
+      <img src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" style="width:28px;height:28px;object-fit:contain;" />
+      <span class="footer-strip-name">Northern Performance</span>
+    </a>
+    <p class="footer-strip-copy">&copy; 2024 Northern Performance. All rights reserved.</p>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('open'))
+    );
+  </script>
+</body>
+</html>
