@@ -122,27 +122,60 @@
 
     /* ── SERVICES LIST ── */
     .services-wrapper {
-      max-width: 760px;
+      max-width: 960px;
       margin: 0 auto;
-      padding: 72px 24px 80px;
+      padding: 64px 24px 80px;
     }
 
-    .service-row {
+    .service-block {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 0;
-      margin-bottom: 0;
+      grid-template-columns: 380px 1fr;
       border-bottom: 1px solid var(--granite);
     }
 
-    .service-row:first-child { border-top: 1px solid var(--granite); }
+    .service-block:first-child { border-top: 1px solid var(--granite); }
 
-    .service-label {
-      padding: 36px 24px 36px 0;
-      border-right: 2px solid var(--ember);
+    .service-block-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
 
-    .service-label h2 {
+    .service-split-img {
+      display: flex;
+      height: 300px;
+      width: 100%;
+    }
+
+    .service-split-img img {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .service-block-content {
+      padding: 36px 0 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .service-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 10px;
+    }
+
+    .service-block-content h2 {
       font-family: 'Arial Black', sans-serif;
       font-size: 11px;
       font-weight: 900;
@@ -150,32 +183,21 @@
       text-transform: uppercase;
       color: var(--ember);
       line-height: 1.5;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--granite);
     }
 
-    .service-label .service-tag {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-
-    .service-body {
-      padding: 36px 0 36px 32px;
-    }
-
-    .service-body p {
-      font-size: 14px;
+    .service-block-content p {
+      font-size: 13px;
       color: #3a4a42;
       line-height: 1.8;
       margin-bottom: 10px;
     }
 
-    .service-body p:last-child { margin-bottom: 0; }
+    .service-block-content p:last-child { margin-bottom: 0; }
 
-    .service-body strong {
+    .service-block-content strong {
       color: var(--boreal);
       font-weight: 700;
     }
@@ -320,15 +342,10 @@
       .page-hero p { font-size: 13px; }
 
       .services-wrapper { padding: 40px 20px 48px; }
-      .service-row {
-        grid-template-columns: 1fr;
-      }
-      .service-label {
-        padding: 24px 0 0 16px;
-        border-right: none;
-        border-left: 3px solid var(--ember);
-      }
-      .service-body { padding: 14px 0 28px 0; }
+      .service-block { grid-template-columns: 1fr; }
+      .service-block-img { height: 220px; }
+      .service-split-img { height: 200px; }
+      .service-block-content { padding: 24px 0 32px 0; }
 
       .book-cta { padding: 40px 20px; }
       .btn-ember, .btn-ghost {
@@ -379,12 +396,11 @@
   <!-- SERVICES LIST -->
   <div class="services-wrapper">
 
-    <div class="service-row">
-      <div class="service-label">
-        <h2>Condition-Based Acupuncture</h2>
+    <div class="service-block">
+      <img class="service-block-img" src="brand_assets/electroacupuncture.jpg" alt="Condition-Based Acupuncture" />
+      <div class="service-block-content">
         <span class="service-tag">Therapeutic</span>
-      </div>
-      <div class="service-body">
+        <h2>Condition-Based Acupuncture</h2>
         <p>
           <strong>What it is:</strong> Fine needles are inserted at precise anatomical points to stimulate
           the nervous system, modulate pain signals, and promote the body's natural healing response.
@@ -399,12 +415,11 @@
       </div>
     </div>
 
-    <div class="service-row">
-      <div class="service-label">
-        <h2>Sports Massage</h2>
+    <div class="service-block">
+      <img class="service-block-img" src="brand_assets/Sports Massage.JPG" alt="Sports Massage" />
+      <div class="service-block-content">
         <span class="service-tag">Pre / Post Sport Recovery</span>
-      </div>
-      <div class="service-body">
+        <h2>Sports Massage</h2>
         <p>
           <strong>What it is:</strong> A targeted soft-tissue treatment adapted to the demands of
           athletic activity. Pre-sport sessions focus on activation, circulation, and readiness;
@@ -419,12 +434,14 @@
       </div>
     </div>
 
-    <div class="service-row">
-      <div class="service-label">
-        <h2>Muscle Scraping &amp; Cupping</h2>
-        <span class="service-tag">Instrument-Assisted</span>
+    <div class="service-block">
+      <div class="service-split-img">
+        <img src="brand_assets/cupping.jpg" alt="Cupping therapy" />
+        <img src="brand_assets/muscle scraping.jpg" alt="Muscle scraping" />
       </div>
-      <div class="service-body">
+      <div class="service-block-content">
+        <span class="service-tag">Instrument-Assisted</span>
+        <h2>Muscle Scraping &amp; Cupping</h2>
         <p>
           <strong>What it is:</strong> Muscle scraping (IASTM) uses a firm-edged tool to break
           down fascial restrictions and scar tissue along the muscle and tendon. Cupping applies
@@ -439,12 +456,11 @@
       </div>
     </div>
 
-    <div class="service-row">
-      <div class="service-label">
-        <h2>Deep Tissue Massage</h2>
+    <div class="service-block">
+      <img class="service-block-img" src="brand_assets/Deep Tissue.PNG" alt="Deep Tissue Massage" />
+      <div class="service-block-content">
         <span class="service-tag">Rehabilitative</span>
-      </div>
-      <div class="service-body">
+        <h2>Deep Tissue Massage</h2>
         <p>
           <strong>What it is:</strong> Sustained, slow pressure applied to the deeper layers of
           muscle and connective tissue. Techniques include cross-fibre friction, myofascial release,
@@ -459,12 +475,11 @@
       </div>
     </div>
 
-    <div class="service-row">
-      <div class="service-label">
-        <h2>Relaxation Massage</h2>
+    <div class="service-block">
+      <img class="service-block-img" src="brand_assets/Relaxation Massage.JPG" alt="Relaxation Massage" />
+      <div class="service-block-content">
         <span class="service-tag">Restorative</span>
-      </div>
-      <div class="service-body">
+        <h2>Relaxation Massage</h2>
         <p>
           <strong>What it is:</strong> Long, flowing strokes applied at a steady, calming rhythm
           to engage the parasympathetic nervous system, lower cortisol, and bring the body into
