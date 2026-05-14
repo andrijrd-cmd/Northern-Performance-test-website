@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northern Performance – Business Card</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --boreal:    #1E3A2F;
+      --spruce:    #3B5438;
+      --ember:     #C17A4A;
+      --birch:     #E8C49A;
+      --sage:      #8FA882;
+      --granite:   #D6CFC4;
+      --snowfield: #F5F2EC;
+      --cream:     #F0E6D3;
+    }
+
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      background: #2a2a2a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      gap: 40px;
+    }
+
+    .page-label {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      text-align: center;
+    }
+
+    /* ── CARD SHELL ── */
+    /* 3.5" × 2" at 96dpi = 336 × 192 — displayed at 1.7× = 571 × 326 */
+    .cards-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .card-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-side-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .card {
+      width: 571px;
+      height: 326px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* ══════════════════════════
+       FRONT
+    ══════════════════════════ */
+    .card-front {
+      background: var(--boreal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* Subtle corner accent lines */
+    .card-front::before,
+    .card-front::after {
+      content: '';
+      position: absolute;
+      border-color: rgba(193,122,74,0.18);
+      border-style: solid;
+      width: 36px;
+      height: 36px;
+    }
+    .card-front::before {
+      top: 16px; left: 16px;
+      border-width: 1px 0 0 1px;
+    }
+    .card-front::after {
+      bottom: 16px; right: 16px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .front-logo {
+      width: 136px;
+      height: 136px;
+      margin-bottom: 16px;
+    }
+
+    .front-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-align: center;
+    }
+
+    .front-rule {
+      width: 48px;
+      height: 1.5px;
+      background: var(--ember);
+      margin: 9px auto;
+    }
+
+    .front-sub {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-align: center;
+    }
+
+    /* ══════════════════════════
+       BACK
+    ══════════════════════════ */
+    .card-back {
+      background: var(--snowfield);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .back-main {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      position: relative;
+    }
+
+    /* Right ember accent bar */
+    .back-main::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--ember);
+    }
+
+    .back-footer-strip {
+      background: var(--boreal);
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .back-footer-service {
+      font-size: 6.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--granite);
+      white-space: nowrap;
+    }
+
+    .back-footer-pipe {
+      font-size: 8px;
+      color: var(--ember);
+      margin: 0 7px;
+      opacity: 0.8;
+    }
+
+    .back-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 36px 32px 28px;
+    }
+
+    .back-name {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--boreal);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .back-title {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 18px;
+    }
+
+    .back-divider {
+      width: 40px;
+      height: 1.5px;
+      background: var(--ember);
+      margin-bottom: 18px;
+    }
+
+    .back-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .back-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .back-contact-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      opacity: 0.5;
+    }
+
+    .back-contact-text {
+      font-size: 10px;
+      color: var(--boreal);
+      letter-spacing: 0.3px;
+      font-weight: 500;
+    }
+
+    .back-qr-panel {
+      width: 162px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-right: 1px solid var(--granite);
+      padding: 20px 16px;
+      background: #fff;
+    }
+
+    #qrcode canvas,
+    #qrcode img {
+      display: block;
+      width: 90px !important;
+      height: 90px !important;
+    }
+
+    .qr-message {
+      font-size: 8px;
+      font-weight: 600;
+      color: var(--boreal);
+      text-align: center;
+      line-height: 1.65;
+      letter-spacing: 0.1px;
+    }
+
+    .qr-url {
+      font-size: 7px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      color: var(--boreal);
+      text-align: center;
+      font-family: 'Arial Black', sans-serif;
+    }
+
+    /* ── PRINT BUTTON ── */
+    .btn-print {
+      background: var(--ember);
+      color: var(--snowfield);
+      border: none;
+      padding: 12px 36px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 2px;
+    }
+    .btn-print:hover { background: #a8673d; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+        gap: 0;
+      }
+      .page-label, .btn-print { display: none; }
+      .cards-row {
+        flex-direction: column;
+        gap: 0.5in;
+        align-items: center;
+        page-break-inside: avoid;
+      }
+      .card-side-label { display: none; }
+      .card {
+        width: 3.5in;
+        height: 2in;
+        box-shadow: none;
+        border-radius: 0;
+        border: 0.5pt solid #ccc;
+      }
+      .front-name { font-size: 9pt; letter-spacing: 3pt; }
+      .front-sub  { font-size: 5pt; letter-spacing: 2pt; }
+      .front-logo { width: 80pt; height: 80pt; margin-bottom: 8pt; }
+      .front-rule { margin: 6pt auto; }
+      .back-name  { font-size: 10pt; }
+      .back-title { font-size: 5.5pt; letter-spacing: 1.5pt; margin-bottom: 10pt; }
+      .back-divider { margin-bottom: 10pt; }
+      .back-contact-text { font-size: 6.5pt; }
+      .back-content { padding: 10pt 22pt 10pt 16pt; }
+      .back-qr-panel { width: 98pt; padding: 8pt 10pt; }
+      #qrcode canvas, #qrcode img { width: 52pt !important; height: 52pt !important; }
+      .qr-message { font-size: 4pt; }
+      .qr-url { font-size: 4.5pt; }
+      .back-footer-strip { height: 20pt; }
+      .back-footer-service { font-size: 4pt; letter-spacing: 0.8pt; }
+      .back-footer-pipe { font-size: 5pt; margin: 0 4pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-label">Northern Performance &mdash; Business Card Preview</p>
+
+  <div class="cards-row">
+
+    <!-- FRONT -->
+    <div class="card-wrap">
+      <span class="card-side-label">Front</span>
+      <div class="card card-front">
+        <img class="front-logo" src="brand_assets/northern_performance_logo_final.svg" alt="Northern Performance logo" />
+        <div class="front-name">Northern Performance</div>
+        <div class="front-rule"></div>
+        <div class="front-sub">Mobile Massage Therapy</div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card-wrap">
+      <span class="card-side-label">Back</span>
+      <div class="card card-back">
+        <div class="back-main">
+        <div class="back-qr-panel">
+          <div id="qrcode"></div>
+          <p class="qr-message">Scan to explore services, book appointments, and support our mission!</p>
+          <div class="qr-url">northern&#8209;performance.com</div>
+        </div>
+
+        <div class="back-content">
+          <div class="back-name">Jude Taylor, RMT</div>
+          <div class="back-title">Registered Massage Therapist</div>
+          <div class="back-divider"></div>
+          <div class="back-contact">
+
+            <div class="back-contact-item">
+              <!-- Phone icon -->
+              <svg class="back-contact-icon" viewBox="0 0 24 24" fill="none" stroke="#1E3A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .92h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              <span class="back-contact-text">(416) 522-4666</span>
+            </div>
+
+            <div class="back-contact-item">
+              <!-- Email icon -->
+              <svg class="back-contact-icon" viewBox="0 0 24 24" fill="none" stroke="#1E3A2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span class="back-contact-text">j44taylo@uwaterloo.ca</span>
+            </div>
+
+          </div>
+        </div>
+        </div><!-- /.back-main -->
+
+        <div class="back-footer-strip">
+          <span class="back-footer-service">Deep Tissue</span>
+          <span class="back-footer-pipe">|</span>
+          <span class="back-footer-service">Relaxation Massage</span>
+          <span class="back-footer-pipe">|</span>
+          <span class="back-footer-service">Cupping / Muscle Scraping</span>
+          <span class="back-footer-pipe">|</span>
+          <span class="back-footer-service">Acupuncture</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    new QRCode(document.getElementById('qrcode'), {
+      text: 'https://www.northern-performance.com',
+      width: 96,
+      height: 96,
+      colorDark: '#1E3A2F',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  </script>
+
+</body>
+</html>

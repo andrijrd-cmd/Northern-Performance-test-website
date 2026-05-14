@@ -580,6 +580,19 @@
     }
 
     .btn-submit:hover { background: #a8673d; }
+    .btn-submit:disabled { background: var(--spruce); cursor: not-allowed; }
+
+    .form-feedback {
+      display: none;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .form-feedback.success { display: block; color: var(--sage); }
+    .form-feedback.error   { display: block; color: #e07070; }
 
     .footer-bottom {
       max-width: 720px;
@@ -746,7 +759,7 @@
     <div class="hero-content">
       <h1>Northern<br>Performance</h1>
       <p class="subtitle">RMT · Kinesiology · Rehabilitation</p>
-      <a href="#contact" class="btn-ember">Book a Session</a>
+      <a href="https://northernperformance.janeapp.com/" target="_blank" class="btn-ember">Book a Session</a>
     </div>
   </section>
 
@@ -813,7 +826,7 @@
             <li>Post-treatment guidance</li>
           </ul>
           <div class="pricing-price">$105.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
-          <a href="#contact" class="btn-ember">Book Now</a>
+          <a href="https://northernperformance.janeapp.com/" target="_blank" class="btn-ember">Book Now</a>
         </div>
 
         <div class="pricing-card pricing-card--featured">
@@ -828,7 +841,7 @@
             <li>Post-treatment guidance</li>
           </ul>
           <div class="pricing-price">$126.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
-          <a href="#contact" class="btn-ember">Book Now</a>
+          <a href="https://northernperformance.janeapp.com/" target="_blank" class="btn-ember">Book Now</a>
         </div>
 
         <div class="pricing-card">
@@ -843,7 +856,7 @@
             <li>Post-treatment guidance</li>
           </ul>
           <div class="pricing-price">$178.00 <span style="font-size:11px;font-family:Arial,sans-serif;font-weight:400;color:var(--sage);">+ Tax</span></div>
-          <a href="#contact" class="btn-ember">Book Now</a>
+          <a href="https://northernperformance.janeapp.com/" target="_blank" class="btn-ember">Book Now</a>
         </div>
 
       </div>
@@ -891,7 +904,7 @@
         ></iframe>
         <div class="footer-address">
           <p>3234 Muskoka District Road 169<br>Bala, ON P0C 1A0</p>
-          <p>Email: <a href="mailto:hello@northernperformance.ca">hello@northernperformance.ca</a><br>Tel: (416) 522-4666</p>
+          <p>Email: <a href="mailto:j44taylo@uwaterloo.ca">j44taylo@uwaterloo.ca</a><br>Tel: (416) 522-4666</p>
           <p style="margin-top:10px;">
             Mon – Fri: 7am – 8pm<br>
             Saturday: 8am – 5pm<br>
@@ -903,15 +916,16 @@
       <!-- Contact Form -->
       <div class="footer-col">
         <h3>Contact</h3>
-        <form class="contact-form" onsubmit="return false;">
+        <form class="contact-form" id="contact-form">
           <div class="form-row">
-            <input type="text" placeholder="First Name*" required />
-            <input type="text" placeholder="Last Name" />
+            <input type="text" name="first_name" placeholder="First Name*" required />
+            <input type="text" name="last_name" placeholder="Last Name" />
           </div>
-          <input type="email" placeholder="Email*" required />
-          <input type="text" placeholder="Subject" />
-          <textarea placeholder="Your message here..."></textarea>
-          <button type="submit" class="btn-submit">Submit</button>
+          <input type="email" name="email" placeholder="Email*" required />
+          <input type="text" name="subject" placeholder="Subject" />
+          <textarea name="message" placeholder="Your message here..."></textarea>
+          <button type="submit" class="btn-submit" id="submit-btn">Submit</button>
+          <p class="form-feedback" id="form-feedback"></p>
         </form>
       </div>
 
@@ -934,6 +948,43 @@
     links.querySelectorAll('a').forEach(a =>
       a.addEventListener('click', () => links.classList.remove('open'))
     );
+
+    const form     = document.getElementById('contact-form');
+    const btn      = document.getElementById('submit-btn');
+    const feedback = document.getElementById('form-feedback');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      feedback.className = 'form-feedback';
+      feedback.textContent = '';
+
+      try {
+        const res = await fetch('https://formspree.io/f/mrejvlop', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          feedback.textContent = 'Message sent — we\'ll be in touch soon.';
+          feedback.className = 'form-feedback success';
+          form.reset();
+        } else {
+          const data = await res.json();
+          const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong.';
+          feedback.textContent = msg;
+          feedback.className = 'form-feedback error';
+        }
+      } catch {
+        feedback.textContent = 'Network error — please try again.';
+        feedback.className = 'form-feedback error';
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Submit';
+    });
   </script>
 </body>
 </html>
