@@ -1222,6 +1222,42 @@
       if (e.target === document.getElementById('zone-modal')) closeZoneModal();
     }
 
+    function geocode(url) {
+      return fetch(url, {
+        headers: {
+          'Accept-Language': 'en',
+          'User-Agent': 'NorthernPerformanceWebsite/1.0'
+        }
+      }).then(function(r) { return r.json(); });
+    }
+
+    function handleGeoResult(data, btn) {
+      btn.disabled = false;
+      btn.textContent = "Check if I'm in your zone";
+
+      if (!data || data.length === 0) return false;
+
+      var lat  = parseFloat(data[0].lat);
+      var lon  = parseFloat(data[0].lon);
+      var dist = haversineKm(BUSINESS_LAT, BUSINESS_LON, lat, lon);
+
+      if (dist <= ZONE_RADIUS_KM) {
+        showZoneModal(
+          '<div class="zone-modal-icon">&#x2714;&#xFE0F;</div>' +
+          '<div class="zone-modal-title">You\'re in our zone!</div>' +
+          '<p class="zone-modal-msg">Great news — you\'re within our 20 km service area. We\'d love to bring the treatment to you. Book a session and we\'ll come to you ready to work.</p>' +
+          '<a href="https://northernperformance.janeapp.com" target="_blank" class="zone-modal-btn">Book a Session</a>'
+        );
+      } else {
+        showZoneModal(
+          '<div class="zone-modal-icon">&#x1F9ED;</div>' +
+          '<div class="zone-modal-title">Outside our travel radius</div>' +
+          '<p class="zone-modal-msg">We\'d love to treat you but we currently limit our travel radius to 20 km to ensure we arrive relaxed and ready for your session.</p>'
+        );
+      }
+      return true;
+    }
+
     function checkZone() {
       var query = document.getElementById('zone-input').value.trim();
       if (!query) return;
@@ -1230,57 +1266,66 @@
       btn.disabled = true;
       btn.textContent = 'Checking…';
 
-      // Canadian postal code: strip spaces, uppercase
-      var cleaned = query.replace(/\s+/g, '').toUpperCase();
-      var isPostal = /^[A-Z]\d[A-Z]\d?[A-Z]?\d?$/.test(cleaned);
+      var cleaned  = query.replace(/\s+/g, '').toUpperCase();
+      var fullPostal = /^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(cleaned);
+      var fsaOnly    = /^[A-Z]\d[A-Z]$/.test(cleaned);
+      var isPostal   = fullPostal || fsaOnly;
+      var fsa        = cleaned.substring(0, 3);
 
-      var apiUrl = isPostal
-        ? 'https://nominatim.openstreetmap.org/search?postalcode=' + encodeURIComponent(cleaned) + '&country=ca&format=json&limit=1'
-        : 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query + ', Ontario, Canada') + '&format=json&limit=1';
+      var BASE = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=ca&accept-language=en';
 
-      fetch(apiUrl, { headers: { 'Accept-Language': 'en' } })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          btn.disabled = false;
-          btn.textContent = "Check if I'm in your zone";
-
-          if (!data || data.length === 0) {
+      if (isPostal) {
+        // Try FSA first (best Nominatim coverage for Canadian codes)
+        geocode(BASE + '&postalcode=' + encodeURIComponent(fsa))
+          .then(function(data) {
+            if (handleGeoResult(data, btn)) return;
+            // FSA not found — fall back to free-text city search
+            return geocode(BASE + '&q=' + encodeURIComponent(query + ', Ontario, Canada'))
+              .then(function(data2) {
+                if (!handleGeoResult(data2, btn)) {
+                  btn.disabled = false;
+                  btn.textContent = "Check if I'm in your zone";
+                  showZoneModal(
+                    '<div class="zone-modal-icon">&#x1F4CD;</div>' +
+                    '<div class="zone-modal-title">Location Not Found</div>' +
+                    '<p class="zone-modal-msg">We couldn\'t locate that postal code. Try entering your town or city name instead (e.g. "Port Carling" or "Gravenhurst").</p>'
+                  );
+                }
+              });
+          })
+          .catch(function() {
+            btn.disabled = false;
+            btn.textContent = "Check if I'm in your zone";
             showZoneModal(
-              '<div class="zone-modal-icon">&#x1F4CD;</div>' +
-              '<div class="zone-modal-title">Location Not Found</div>' +
-              '<p class="zone-modal-msg">We couldn\'t locate that postal code or city. Please double-check your entry and try again.</p>'
+              '<div class="zone-modal-icon">&#x26A0;&#xFE0F;</div>' +
+              '<div class="zone-modal-title">Something went wrong</div>' +
+              '<p class="zone-modal-msg">We had trouble looking up that location. Please check your connection and try again.</p>'
             );
-            return;
-          }
-
-          var lat = parseFloat(data[0].lat);
-          var lon = parseFloat(data[0].lon);
-          var dist = haversineKm(BUSINESS_LAT, BUSINESS_LON, lat, lon);
-
-          if (dist <= ZONE_RADIUS_KM) {
+          });
+      } else {
+        // City / town name search
+        geocode(BASE + '&q=' + encodeURIComponent(query + ', Ontario, Canada'))
+          .then(function(data) {
+            if (!handleGeoResult(data, btn)) {
+              btn.disabled = false;
+              btn.textContent = "Check if I'm in your zone";
+              showZoneModal(
+                '<div class="zone-modal-icon">&#x1F4CD;</div>' +
+                '<div class="zone-modal-title">Location Not Found</div>' +
+                '<p class="zone-modal-msg">We couldn\'t find that location. Try your postal code or a nearby town name (e.g. "Bala", "Port Carling", "Gravenhurst").</p>'
+              );
+            }
+          })
+          .catch(function() {
+            btn.disabled = false;
+            btn.textContent = "Check if I'm in your zone";
             showZoneModal(
-              '<div class="zone-modal-icon">&#x2714;&#xFE0F;</div>' +
-              '<div class="zone-modal-title">You\'re in our zone!</div>' +
-              '<p class="zone-modal-msg">Great news — you\'re within our 20 km service area. We\'d love to bring the treatment to you. Book a session and we\'ll come to you ready to work.</p>' +
-              '<a href="https://northernperformance.janeapp.com" target="_blank" class="zone-modal-btn">Book a Session</a>'
+              '<div class="zone-modal-icon">&#x26A0;&#xFE0F;</div>' +
+              '<div class="zone-modal-title">Something went wrong</div>' +
+              '<p class="zone-modal-msg">We had trouble looking up that location. Please check your connection and try again.</p>'
             );
-          } else {
-            showZoneModal(
-              '<div class="zone-modal-icon">&#x1F9ED;</div>' +
-              '<div class="zone-modal-title">Outside our travel radius</div>' +
-              '<p class="zone-modal-msg">We\'d love to treat you but we currently limit our travel radius to 20 km to ensure we arrive relaxed and ready for your session.</p>'
-            );
-          }
-        })
-        .catch(function() {
-          btn.disabled = false;
-          btn.textContent = "Check if I'm in your zone";
-          showZoneModal(
-            '<div class="zone-modal-icon">&#x26A0;&#xFE0F;</div>' +
-            '<div class="zone-modal-title">Something went wrong</div>' +
-            '<p class="zone-modal-msg">We had trouble looking up that location. Please check your connection and try again.</p>'
-          );
-        });
+          });
+      }
     }
   </script>
 </body>
