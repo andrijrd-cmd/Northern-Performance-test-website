@@ -146,6 +146,7 @@
 
     .service-split-img {
       display: flex;
+      gap: 2px;
       height: 300px;
       width: 100%;
     }
@@ -153,6 +154,7 @@
     .service-split-img img {
       flex: 1;
       min-width: 0;
+      width: 0;
       height: 100%;
       object-fit: cover;
       object-position: center;
@@ -346,7 +348,8 @@
       .services-wrapper { padding: 40px 20px 48px; }
       .service-block { grid-template-columns: 1fr; }
       .service-block-img { height: 220px; }
-      .service-split-img { height: 200px; }
+      .service-split-img { flex-direction: column; height: auto; gap: 2px; }
+      .service-split-img img { height: 180px; width: 100%; }
       .service-block-content { padding: 24px 0 32px 0; }
 
       .book-cta { padding: 40px 20px; }
