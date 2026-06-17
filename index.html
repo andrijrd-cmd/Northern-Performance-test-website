@@ -153,6 +153,160 @@
 
     .btn-ember:hover { background: #a8673d; }
 
+    .hero-service-area {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-top: 18px;
+      opacity: 0.9;
+    }
+
+    /* ── ZONE CHECK BAR ── */
+    .zone-bar {
+      background: var(--boreal);
+      border-top: 2px solid var(--ember);
+      padding: 22px 24px;
+    }
+
+    .zone-bar-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .zone-bar-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--birch);
+      flex-shrink: 0;
+    }
+
+    .zone-bar-form {
+      display: flex;
+      flex: 1;
+      gap: 10px;
+      min-width: 260px;
+    }
+
+    .zone-input {
+      flex: 1;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(143,168,130,0.35);
+      color: var(--cream);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      padding: 10px 14px;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    .zone-input::placeholder { color: rgba(240,230,211,0.4); }
+    .zone-input:focus { border-color: var(--ember); }
+
+    .zone-btn {
+      background: var(--ember);
+      color: var(--snowfield);
+      border: none;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      cursor: pointer;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .zone-btn:hover { background: #a8673d; }
+    .zone-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    /* ── ZONE MODAL ── */
+    .zone-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .zone-modal.open { display: flex; }
+
+    .zone-modal-box {
+      background: var(--boreal);
+      border: 1px solid rgba(143,168,130,0.3);
+      border-top: 3px solid var(--ember);
+      max-width: 440px;
+      width: 100%;
+      padding: 32px 28px 28px;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    .zone-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--sage);
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .zone-modal-close:hover { color: var(--cream); }
+
+    .zone-modal-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .zone-modal-title {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .zone-modal-msg {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--birch);
+    }
+
+    .zone-modal-btn {
+      display: inline-block;
+      background: var(--ember);
+      color: var(--snowfield);
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      margin-top: 20px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .zone-modal-btn:hover { background: #a8673d; }
+
     /* ── ABOUT ── */
     .about-section {
       display: flex;
@@ -277,40 +431,58 @@
 
     /* ── GALLERY ── */
     .gallery-strip {
-      display: flex;
-      max-width: 560px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      max-width: 760px;
       margin: 20px auto 0;
     }
 
-    .gallery-strip img {
-      flex: 1 1 0;
-      min-width: 0;
-      height: 160px;
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
       object-fit: cover;
       object-position: center;
+      image-orientation: from-image;
       display: block;
     }
 
-    .see-all-btn {
-      background: var(--boreal);
+    .gallery-item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(30,58,47,0.82);
       color: var(--cream);
-      width: 160px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-family: 'Arial Black', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 8px;
+      font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      text-decoration: none;
-      padding: 20px;
-      line-height: 1.4;
+      text-align: center;
+      padding: 7px 6px;
     }
 
-    .see-all-btn:hover { background: var(--spruce); }
+    .see-all-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--ember);
+      color: var(--ember);
+      text-decoration: none;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 11px 28px;
+      margin-top: 16px;
+    }
+
+    .see-all-btn:hover { background: var(--ember); color: var(--snowfield); }
 
     /* ── PRICING ── */
     .pricing-section {
@@ -674,6 +846,10 @@
       .hero { height: 380px; padding: 0 20px; }
       .hero-content h1 { font-size: 34px; letter-spacing: 5px; }
       .hero-content .subtitle { font-size: 13px; letter-spacing: 1.5px; }
+      .hero-service-area { font-size: 9.5px; letter-spacing: 1.2px; }
+      .zone-bar-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .zone-bar-form { width: 100%; min-width: unset; }
+      .zone-btn { width: 100%; text-align: center; }
 
       .about-section {
         flex-direction: column;
@@ -683,8 +859,7 @@
       .about-photo { width: 100%; height: 260px; }
 
       .services-section { padding: 40px 20px; }
-      .gallery-strip { max-width: 100%; }
-      .gallery-strip img { height: 120px; }
+      .gallery-item img { height: 140px; }
       .see-all-btn { width: 110px; font-size: 9px; padding: 12px 8px; }
 
       .pricing-section { padding: 40px 20px; }
@@ -760,8 +935,36 @@
       <h1>Northern<br>Performance</h1>
       <p class="subtitle">RMT · Kinesiology · Rehabilitation</p>
       <a href="https://northernperformance.janeapp.com" target="_blank" class="btn-ember">Book a Session</a>
+      <p class="hero-service-area">Proudly serving Port Carling / Bala / Port Severn &amp; surrounding areas within 20 km</p>
     </div>
   </section>
+
+  <!-- CHECK AVAILABILITY BAR -->
+  <section class="zone-bar">
+    <div class="zone-bar-inner">
+      <span class="zone-bar-label">Check Availability</span>
+      <div class="zone-bar-form">
+        <input
+          type="text"
+          id="zone-input"
+          class="zone-input"
+          placeholder="Postal code or city (e.g. P0B 1J0)"
+          maxlength="20"
+          autocomplete="off"
+          onkeydown="if(event.key==='Enter') checkZone()"
+        />
+        <button class="zone-btn" id="zone-btn" onclick="checkZone()">Check if I'm in your zone</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONE RESULT MODAL -->
+  <div id="zone-modal" class="zone-modal" onclick="handleZoneModalClick(event)">
+    <div class="zone-modal-box">
+      <button class="zone-modal-close" onclick="closeZoneModal()">&times;</button>
+      <div id="zone-modal-content"></div>
+    </div>
+  </div>
 
   <!-- ABOUT -->
   <section id="about">
@@ -796,14 +999,14 @@
 
     <!-- Gallery strip -->
     <div class="gallery-strip">
-      <img
-        src="brand_assets/spinal-manipulation-big.jpg"
-        alt="Spinal manipulation treatment"
-      />
-      <img
-        src="brand_assets/assessment photo.jpg"
-        alt="Assessment session"
-      />
+      <div class="gallery-item">
+        <img src="brand_assets/assessment photo.jpg" alt="Assessment session" />
+      </div>
+      <div class="gallery-item">
+        <img src="brand_assets/spinal-manipulation-big.jpg" alt="Spinal manipulation treatment" />
+      </div>
+    </div>
+    <div style="text-align:center;">
       <a href="services.html" class="see-all-btn">See All Treatments</a>
     </div>
   </section>
@@ -983,6 +1186,97 @@
       btn.disabled = false;
       btn.textContent = 'Submit';
     });
+  </script>
+
+  <script>
+    // Business location: 4025 Muskoka District Road 118 West, Port Carling, ON P0B 1J0
+    var BUSINESS_LAT = 45.1197;
+    var BUSINESS_LON = -79.5726;
+    var ZONE_RADIUS_KM = 20;
+
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      var R = 6371;
+      var dLat = (lat2 - lat1) * Math.PI / 180;
+      var dLon = (lon2 - lon1) * Math.PI / 180;
+      var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function showZoneModal(html) {
+      document.getElementById('zone-modal-content').innerHTML = html;
+      document.getElementById('zone-modal').classList.add('open');
+    }
+
+    function closeZoneModal() {
+      document.getElementById('zone-modal').classList.remove('open');
+    }
+
+    function handleZoneModalClick(e) {
+      if (e.target === document.getElementById('zone-modal')) closeZoneModal();
+    }
+
+    function checkZone() {
+      var query = document.getElementById('zone-input').value.trim();
+      if (!query) return;
+
+      var btn = document.getElementById('zone-btn');
+      btn.disabled = true;
+      btn.textContent = 'Checking…';
+
+      // Canadian postal code: strip spaces, uppercase
+      var cleaned = query.replace(/\s+/g, '').toUpperCase();
+      var isPostal = /^[A-Z]\d[A-Z]\d?[A-Z]?\d?$/.test(cleaned);
+
+      var apiUrl = isPostal
+        ? 'https://nominatim.openstreetmap.org/search?postalcode=' + encodeURIComponent(cleaned) + '&country=ca&format=json&limit=1'
+        : 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query + ', Ontario, Canada') + '&format=json&limit=1';
+
+      fetch(apiUrl, { headers: { 'Accept-Language': 'en' } })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          btn.disabled = false;
+          btn.textContent = "Check if I'm in your zone";
+
+          if (!data || data.length === 0) {
+            showZoneModal(
+              '<div class="zone-modal-icon">&#x1F4CD;</div>' +
+              '<div class="zone-modal-title">Location Not Found</div>' +
+              '<p class="zone-modal-msg">We couldn\'t locate that postal code or city. Please double-check your entry and try again.</p>'
+            );
+            return;
+          }
+
+          var lat = parseFloat(data[0].lat);
+          var lon = parseFloat(data[0].lon);
+          var dist = haversineKm(BUSINESS_LAT, BUSINESS_LON, lat, lon);
+
+          if (dist <= ZONE_RADIUS_KM) {
+            showZoneModal(
+              '<div class="zone-modal-icon">&#x2714;&#xFE0F;</div>' +
+              '<div class="zone-modal-title">You\'re in our zone!</div>' +
+              '<p class="zone-modal-msg">Great news — you\'re within our 20 km service area. We\'d love to bring the treatment to you. Book a session and we\'ll come to you ready to work.</p>' +
+              '<a href="https://northernperformance.janeapp.com" target="_blank" class="zone-modal-btn">Book a Session</a>'
+            );
+          } else {
+            showZoneModal(
+              '<div class="zone-modal-icon">&#x1F9ED;</div>' +
+              '<div class="zone-modal-title">Outside our travel radius</div>' +
+              '<p class="zone-modal-msg">We\'d love to treat you but we currently limit our travel radius to 20 km to ensure we arrive relaxed and ready for your session.</p>'
+            );
+          }
+        })
+        .catch(function() {
+          btn.disabled = false;
+          btn.textContent = "Check if I'm in your zone";
+          showZoneModal(
+            '<div class="zone-modal-icon">&#x26A0;&#xFE0F;</div>' +
+            '<div class="zone-modal-title">Something went wrong</div>' +
+            '<p class="zone-modal-msg">We had trouble looking up that location. Please check your connection and try again.</p>'
+          );
+        });
+    }
   </script>
 </body>
 </html>
